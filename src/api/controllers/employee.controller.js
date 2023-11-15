@@ -3,7 +3,7 @@ const Employee = require("../models/employee.model");
 
 const getEmployees = async (req, res, next) => {
   try {
-    const employees = await Employee.find();
+    const employees = await Employee.find().populate("laborInformation");
     return res.status(200).json(employees);
   } catch (error) {
     return res.status(404).json("Employees not found", error);
@@ -13,7 +13,7 @@ const getEmployees = async (req, res, next) => {
 const getEmployeeByID = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const employee = await Employee.findById(id);
+    const employee = await Employee.findById(id).populate("laborInformation");
     return res.status(200).json(employee);
   } catch (error) {
     return res.status(404).json("Employee not found", error);
@@ -23,7 +23,7 @@ const getEmployeeByID = async (req, res, next) => {
 const getEmployeeByName = async (req, res, next) => {
   try {
     const { name } = req.params;
-    const employee = await Employee.findOne({ name: name });
+    const employee = await Employee.findOne({ name: name }).populate("laborInformation");
     return res.status(200).json(employee);
   } catch (error) {
     return res.status(404).json("Employee not found", error);

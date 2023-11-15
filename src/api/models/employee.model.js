@@ -6,9 +6,9 @@ const EmployeeSchema = new mongoose.Schema(
     lastname: { type: String, required: true, trim: true },
     nif: { type: String, required: true, trim: true },
     phone: { type: String, required: true, trim: true },
-    birthdate: { type: Date, required: true },
-    datehight: { type: Date, required: true },
-    enddate: { type: Date },
+    birthdate: { type: String, required: true },
+    dischargeDate: { type: String, required: true },
+    enddate: { type: String, required: false},
     maritalstatus: {
       type: String,
       required: true,
@@ -27,10 +27,10 @@ const EmployeeSchema = new mongoose.Schema(
     girls: { type: Number, enum: [0, 1, 2, 3, 4] },
     cif: { type: String, required: true, trim: true },
     company: { type: String, trim: true },
-    name: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "laborInformation",
-    },
+    laborInformation: [{
+      type: mongoose.Types.ObjectId,
+      ref: "laborInformation"
+    }],
   },
   {
     timestamps: true,

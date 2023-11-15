@@ -4,7 +4,7 @@ const express = require("express");
 const {
   getLaborInformations,
   getLaborInformationByID,
-  getLaborByName,
+  getLaborInformationByName,
   deleteLaborInformation,
   createLaborInformation,
   updateLaborInformation,
@@ -15,7 +15,7 @@ const LaborInformationRouter = express.Router();
 //Definimos las rutas
 LaborInformationRouter.get("/", getLaborInformations);
 LaborInformationRouter.get("/byid/:id", getLaborInformationByID);
-LaborInformationRouter.get("/byname/:name", getLaborByName);
+LaborInformationRouter.get("/byname/:name", getLaborInformationByName);
 LaborInformationRouter.post("/", createLaborInformation);
 LaborInformationRouter.patch("/:id", updateLaborInformation);
 LaborInformationRouter.delete("/:id", deleteLaborInformation);
