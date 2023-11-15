@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const EmployeeSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true, trim: true },
+    firstname: { type: String, required: true, trim: true },
     lastname: { type: String, required: true, trim: true },
     nif: { type: String, required: true, trim: true },
     phone: { type: String, required: true, trim: true },
@@ -26,8 +26,8 @@ const EmployeeSchema = new mongoose.Schema(
     guys: { type: Number, enum: [0, 1, 2, 3, 4] },
     girls: { type: Number, enum: [0, 1, 2, 3, 4] },
     cif: { type: String, required: true, trim: true },
-    name: { type: String, trim: true },
-    laborInformations: {
+    company: { type: String, trim: true },
+    name: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "laborInformation",
     },
