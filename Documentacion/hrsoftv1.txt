@@ -1,0 +1,44 @@
+Crear el proyecto hrsoftv1
+En la terminal. Crear el package.json con el comando npm init -y
+En la terminal instalar las dependencias: npm install express mongoose dotenv bcrypt jsonwebtoken validator cors cloudinary multer-storage-cloudinary
+Crear los ficheros a nivel de la raiz: .gitignore, .env, index.js
+Entrar al index.js. Inportar las dependencias, levantar el servidor, dejar el espacio para importar y llamar a las rutas y oir al servidor.
+Creamos a nivel de la raiz la carpeta   src ==> api ==> models      Todos los modelos de la db
+                                                    ==> controllers Todas los controles de la db
+                                                    ==> routes      Tods las routes de la db
+                                        src==> utils ==> db.js      La conexión a la db
+Creamos el fichero db.js
+En el index.js, importamos la conexión a la db y llamamos a la función de conexión de la db
+
+Crear el modelo de company.model.js
+Crear los controllers de company.controller.js
+Crear las routes de company.routes.js
+
+Crear el modelo de children.model.js
+Crear los controllers de children.controller.js
+Crear las routes de children.routes.js
+
+Crear el modelo de charge.model.js
+Crear los controllers de charge.controller.js
+Crear las routes de charge.routes.js
+
+Crear el modelo de maritalstatus.model.js
+Crear los controllers de maritalstatus.controller.js
+Crear las routes de maritalstatus.routes.js
+
+Crear el modelo de laborinformation.model.js
+Crear los controllers de laborinformation.controller.js
+Crear las routes de laborinformation.routes.js
+
+Crear el modelo de personelinformation.model.js
+Crear los controllers de personelinformation.controller.js
+Crear las routes de personelinformation.routes.js
+
+Crear el modelo de rol.model.js
+Crear los controllers de rol.controller.js
+Crear las routes de rol.routes.js
+
+Crear el modelo de usuary.model.js
+Crear los controllers de usuary.controller.js
+Crear las routes de usuary.routes.js
+
