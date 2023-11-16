@@ -17,7 +17,7 @@ const EmployeeSchema = new mongoose.Schema(
       enum: [
         "soltero",
         "soltera",
-        "Casado",
+        "casado",
         "casada",
         "divorciado",
         "divorciada",
