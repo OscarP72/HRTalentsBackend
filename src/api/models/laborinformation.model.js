@@ -3,11 +3,17 @@ const mongoose = require("mongoose");
 const LaborInformationSchema = new mongoose.Schema(
   {
     salary: { type: Number, required: true },
-    name: {
+    job: {
       type: String,
       required: true,
       trim: true,
-      enum: ["admin", "director", "operator"],
+      enum: ["admin", "director", "operator", "gerente general"],
+    },
+    position: {
+      type: String,
+      required: true,
+      trim: true,
+      enum: ["senior", "junior", "becario"],
     },
   },
   {
