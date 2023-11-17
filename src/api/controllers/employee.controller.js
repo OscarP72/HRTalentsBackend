@@ -1,5 +1,6 @@
 //Importamos el modelo
 const Employee = require("../models/employee.model");
+const {deleteImgCloudinary} = require("../../middlewares/files.middleware");
 
 const getEmployees = async (req, res, next) => {
   try {
@@ -32,7 +33,12 @@ const getEmployeeByName = async (req, res, next) => {
 
 const createEmployee = async (req, res, next) => {
   try {
-    const newEmployee = new Employee(req.body);
+    const newEmployee = new Employee({
+      ...req.body,
+      avatar: req.body 
+      ? req.file.path
+      :"https://murphys-movies.vercel.app/movie-poster-placeholder.svg",
+    });
     await newEmployee.save();
     return res.status(201).json(newEmployee);
   } catch (error) {
@@ -43,6 +49,8 @@ const createEmployee = async (req, res, next) => {
 const deleteEmployee = async (req, res, next) => {
   try {
     const { id } = req.params;
+    const actualEmployee= await Employee.findById(id);
+    deleteImgCloudinary(actualEmployee.avatar);
     await Employee.findByIdAndDelete(id);
     return res.status(200).json("Employee deleted");
   } catch (error) {
@@ -55,7 +63,13 @@ const updateEmployee = async (req, res, next) => {
     const { id } = req.params;
     const newEmployee = new Employee(req.body);
     newEmployee._id = id;
-    await Employee.findByIdAndUpdate(id, newEmployee);
+    await Employee.findByIdAndUpdate(id, {
+      ...req-body,
+      avatar:req.file 
+      ? req.file.path
+      : "https://murphys-movies.vercel.app/movie-poster-placeholder.svg",
+    },
+    {new:true});
     return res.status(200).json("Edited employee");
   } catch (error) {
     return res.status(500).json("Failed editing employee", error);
