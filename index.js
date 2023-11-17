@@ -11,7 +11,7 @@ const { configCloudinary } = require("./src/middlewares/files.middleware");
 const server = express();
 //Connect
 connect();
-//configCloudinary();
+configCloudinary();
 
 //Parser
 server.use(express.json());
