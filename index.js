@@ -24,6 +24,9 @@ server.use("/employeess", EmployeeRouter);
 const LaborInformationRouter = require("./src/api/routes/laborinformation.routes");
 server.use("/laborinformations", LaborInformationRouter);
 
+const UserRouter = require("./src/api/routes/user.routes");
+server.use("/users", UserRouter);
+
 //Ruta para derivar cuando no hay una válida
 server.use("*", (req, res) => {
   res.end("Route not found");
