@@ -4,11 +4,15 @@ const dotenv = require("dotenv");
 dotenv.config();
 //Importar la conexión a la db.
 const connect = require("./src/utils/db");
+//Importar cloudinary
+const { configCloudinary } = require("./src/middlewares/files.middleware");
 
 //Server
 const server = express();
 //Connect
 connect();
+//configCloudinary();
+
 //Parser
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
