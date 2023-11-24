@@ -1,5 +1,6 @@
 //Importar las dependencias y configurar el dotenv
 const express = require("express");
+const cors= require("cors");
 const dotenv = require("dotenv");
 dotenv.config();
 //Importar la conexión a la db.
@@ -12,6 +13,7 @@ const server = express();
 //Connect
 connect();
 configCloudinary();
+server.use (cors());
 
 //Parser
 server.use(express.json());
