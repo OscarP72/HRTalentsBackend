@@ -9,15 +9,15 @@ const {
   createLaborInformation,
   updateLaborInformation,
 } = require("../controllers/laborInformation.controller");
-
+const {isAuth}=require ("../../middlewares/auth.middleware");
 //Creamos el router
 const LaborInformationRouter = express.Router();
 //Definimos las rutas
-LaborInformationRouter.get("/", getLaborInformations);
-LaborInformationRouter.get("/byid/:id", getLaborInformationByID);
-LaborInformationRouter.get("/byname/:name", getLaborInformationByName);
-LaborInformationRouter.post("/", createLaborInformation);
-LaborInformationRouter.patch("/:id", updateLaborInformation);
-LaborInformationRouter.delete("/:id", deleteLaborInformation);
+LaborInformationRouter.get("/", [isAuth], getLaborInformations);
+LaborInformationRouter.get("/byid/:id", [isAuth], getLaborInformationByID);
+LaborInformationRouter.get("/byname/:name", [isAuth], getLaborInformationByName);
+LaborInformationRouter.post("/", [isAuth], createLaborInformation);
+LaborInformationRouter.patch("/:id", [isAuth], updateLaborInformation);
+LaborInformationRouter.delete("/:id", [isAuth], deleteLaborInformation);
 
 module.exports = LaborInformationRouter;

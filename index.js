@@ -1,6 +1,6 @@
 //Importar las dependencias y configurar el dotenv
 const express = require("express");
-const cors= require("cors");
+const cors = require("cors");
 const dotenv = require("dotenv");
 dotenv.config();
 //Importar la conexión a la db.
@@ -13,7 +13,7 @@ const server = express();
 //Connect
 connect();
 configCloudinary();
-server.use (cors());
+server.use(cors());
 
 //Parser
 server.use(express.json());
@@ -31,7 +31,7 @@ server.use("/users", UserRouter);
 
 //Ruta para derivar cuando no hay una válida
 server.use("*", (req, res) => {
-  res.end("Route not found");
+  return res.status(404).json("Route not found");
 });
 
 //Listen

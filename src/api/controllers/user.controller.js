@@ -3,6 +3,14 @@ const User = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const { generateToken } = require("../../utils/token");
 
+const getUsers =async (req, res, next) =>{
+  try {
+    const users = await User.find();
+    return res.status(200).jason(users);
+  } catch (error) {
+    return next(error);
+  }
+}
 const register = async (req, res, next) => {
   try {
     const user = new User({
@@ -15,7 +23,7 @@ const register = async (req, res, next) => {
     user.password = null;
     return res.status(201).json(user);
   } catch (error) {
-    return next(new Error("Error registering user"));
+    return next(error);
   }
 };
 
@@ -37,9 +45,9 @@ const login = async (req, res, next) => {
       return next(new Error("Password incorrect"));
     }
   } catch (error) {
-    return next(new Error("Failed login"));
+    return next(error);
   }
 };
 
-module.exports = { login, register };
+module.exports = { getUsers, login, register };
 
