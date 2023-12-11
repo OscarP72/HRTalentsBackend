@@ -29,6 +29,12 @@ server.use("/laborinformations", LaborInformationRouter);
 const UserRouter = require("./src/api/routes/user.routes");
 server.use("/users", UserRouter);
 
+const ContactRouter = require('./src/api/routes/contact.routes');
+server.use('/contact', ContactRouter);
+
+const EnvioCurriculum = require('./src/components/EnvioCurriculum');
+server.use('/enviar-curriculum', EnvioCurriculum);
+
 //Ruta para derivar cuando no hay una válida
 server.use("*", (req, res) => {
   return res.status(404).json("Route not found");
@@ -40,3 +46,4 @@ const PORT = process.env.PORT;
 server.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+
