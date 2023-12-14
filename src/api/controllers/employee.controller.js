@@ -1,7 +1,18 @@
-//Importamos el modelo
+const express = require('express');
+const multer = require('multer');
+const router = express.Router();
 const Employee = require("../models/employee.model");
+const LaborInformation = require('../models/laborInformation.model');
 const {deleteImgCloudinary} = require("../../middlewares/files.middleware");
 
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/'); // Carpeta de destino para almacenar las imágenes
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname); // Nombre de archivo único
+  },
+});
 const getEmployees = async (req, res, next) => {
   try {
     const employees = await Employee.find().populate("laborInformation");
@@ -33,16 +44,46 @@ const getEmployeeByName = async (req, res, next) => {
 
 const createEmployee = async (req, res, next) => {
   try {
-    const newEmployee = new Employee({
-      ...req.body,
-      avatar: req.body 
-      ? req.file.path
-      :"https://murphys-movies.vercel.app/movie-poster-placeholder.svg",
+    const employeeData = req.body;
+
+    
+    const laborInfo = new LaborInformation({
+      salary: employeeData.laborinformation.salary,
+      job: employeeData.laborinformation.job,
+      position: employeeData.laborinformation.position,
     });
+
+    
+    const savedLaborInfo = await laborInfo.save();
+
+    
+    const newEmployee = new Employee({
+      emplid: employeeData.emplid,
+      name: employeeData.name,
+      lastname: employeeData.lastname,
+      nif: employeeData.nif,
+      phone: employeeData.phone,
+      birthdate: employeeData.birthdate,
+      dischargeDate: employeeData.dischargeDate,
+      enddate: employeeData.enddate,
+      maritalstatus: employeeData.maritalstatus,
+      children: employeeData.children,
+      cif: employeeData.cif,
+      company: employeeData.company,
+      ssnumber: employeeData.ssnumber,
+      addresses: employeeData.addresses,
+      department: employeeData.department,
+      laborInformation: [savedLaborInfo._id], 
+      image: employeeData.image,  
+    });
+
+    
     await newEmployee.save();
-    return res.status(201).json(newEmployee);
+
+    res.status(201).json({ success: true, message: 'Empleado creado exitosamente' });
   } catch (error) {
-    return res.status(500).json("Failed creating Employee", error);
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Error interno del servidor' });
   }
 };
 

@@ -36,6 +36,7 @@ const EmployeeSchema = new mongoose.Schema(
         ref: "laborInformation",
       },
     ],
+    image:{type:String,trim:true},
   },
   {
     timestamps: true,
