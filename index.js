@@ -32,6 +32,9 @@ server.use("/users", UserRouter);
 const ContactRouter = require('./src/api/routes/contact.routes');
 server.use('/contact', ContactRouter);
 
+const Contact2Router = require('./src/api/routes/contact2.routes');
+server.use('/contact2', Contact2Router);
+
 const EnvioCurriculum = require('./src/components/EnvioCurriculum');
 server.use('/enviar-curriculum', EnvioCurriculum);
 
